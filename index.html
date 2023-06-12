@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .graph{
+            display: flex;
+            flex-direction: column-reverse;
+            border: 1px solid black;
+            width: 50px;
+            height: 300px;
+            padding: 2px;
+            justify-content: end;
+        }
+        .block{
+            width: 100%;
+        }
+        .green{
+            background-color: teal;
+        }
+        .red{
+            background-color: tomato;
+        }
+        .hidden{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+        <input type="range" id="range" value="0" min="0" max="100">
+        <input type="number" id="number" value="0" min="0" max="100">
+
+        <div class="graph">
+            <div class="block green">
+            </div>
+            <div class="block red">
+            </div>
+        </div>
+      
+
+    
+    <script src="index.js"></script>
+</body>
+</html>
