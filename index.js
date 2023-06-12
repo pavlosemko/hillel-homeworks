@@ -43,8 +43,8 @@ window.onload = function () {
         return function () {
             const value = validateValueAndGet(this),
                 comission = getCommision(value);
-            changeGraphHeight(green, red, value, comission);
             input.value = value;
+            changeGraphHeight(green, red, value, comission);
         };
     }
 
