@@ -5,7 +5,7 @@ window.onload = function () {
     let inner = 1;
     array.forEach(function (row) {
         const tr = document.createElement("tr");
-        let counter = row.length;
+        let counter = step;
         while (counter--) {
             const td = document.createElement("td");
             td.innerHTML = inner++;
