@@ -1,37 +1,48 @@
 window.onload = function () {
-    const step = 10,
-        array = new Array(step).fill(new Array(step)),
-        table = document.createElement("table");
-    let inner = 1;
-    array.forEach(function (row) {
-        const tr = document.createElement("tr");
-        let counter = step;
-        while (counter--) {
-            const td = document.createElement("td");
-            td.innerHTML = inner++;
-            tr.append(td);
+    class Table {
+        #table;
+        get #createRow() {
+            return document.createElement("tr");
         }
-        table.append(tr);
-    });
-
-    const table2 = document.createElement("table");
-    for (let i = 0; i < step; i++) {
-        const row = document.createElement("tr");
-
-        for (let j = 0; j < step; j++) {
-            const cell = document.createElement("td");
-            const value = i * step + j + 1;
-            const text = (document.innerText = value);
-            cell.append(text);
-            row.append(cell);
+        get #createCeil() {
+            return document.createElement("td");
         }
-
-        table2.append(row);
+        constructor() {
+            this.#table = document.createElement("table");
+        }
+        genTableBodyByArray(array) {
+            for (const iterator of array) {
+                const row = this.#createRow;
+                for (const data of iterator) {
+                    const cell = this.#createCeil;
+                    cell.innerText = data;
+                    row.append(cell);
+                }
+                this.#table.append(row);
+            }
+        }
+        appendTo(element) {
+            element.append(this.#table);
+        }
+        get render() {
+            return this.#table;
+        }
     }
 
-    const fragment = document.createDocumentFragment();
-    fragment.append(table);
-    fragment.append(table2);
+    const createSequentialArray = (rows, cols) => {
+        const array = new Array(rows);
+        for (let i = 0; i < rows; i++) {
+            array[i] = new Array(cols);
+            for (let j = 0; j < cols; j++) {
+                array[i][j] = i * cols + j + 1;
+            }
+        }
+        return array;
+    };
 
-    document.body.append(fragment);
+    const array = createSequentialArray(10, 10);
+
+    const table = new Table();
+    table.genTableBodyByArray(array);
+    table.appendTo(document.body);
 };
