@@ -1,6 +1,9 @@
 window.onload = function () {
     class Table {
         #table;
+        get #createTable() {
+            return document.createElement("table");
+        }
         get #createRow() {
             return document.createElement("tr");
         }
@@ -8,7 +11,7 @@ window.onload = function () {
             return document.createElement("td");
         }
         constructor() {
-            this.#table = document.createElement("table");
+            this.#table = this.#createTable;
         }
         genTableBodyByArray(array) {
             for (const iterator of array) {
