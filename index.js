@@ -49,3 +49,5 @@ window.onload = function () {
     table.genTableBodyByArray(array);
     table.appendTo(document.body);
 };
+
+
