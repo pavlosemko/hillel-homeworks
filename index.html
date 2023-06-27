@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .wrapper{
+            padding: 10px;
+            border:1px dashed tomato;
+        }
+        body{
+            display: flex;
+            
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="wrapper" id="counter1">
+        <input type="number" name="counter1" >
+        <button data-action="upCounter">Click</button>
+        <button data-action="clearCounter">ClearCounter</button>
+        <button data-action="setCounter">setCounter</button>
+
+    </div>
+    <div class="wrapper" id="counter2">
+        <input type="number" name="counter2" > 
+        <button data-action="upCounter">Click</button>
+        <button data-action="clearCounter">ClearCounter</button>
+        <button data-action="setCounter">setCounter</button>
+    </div>
+
+    <script src="index.js"></script>
+</body>
+</html>
