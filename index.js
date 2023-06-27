@@ -1,23 +1,17 @@
 window.onload = function () {
     class Table {
         #table;
-        get #createTable() {
-            return document.createElement("table");
-        }
-        get #createRow() {
-            return document.createElement("tr");
-        }
-        get #createCeil() {
-            return document.createElement("td");
-        }
+        #createTable = () => document.createElement("table");
+        #createRow = () => document.createElement("tr");
+        #createCeil = () => document.createElement("td");
         constructor() {
-            this.#table = this.#createTable;
+            this.#table = this.#createTable();
         }
         genTableBodyByArray(array) {
             for (const iterator of array) {
-                const row = this.#createRow;
+                const row = this.#createRow();
                 for (const data of iterator) {
-                    const cell = this.#createCeil;
+                    const cell = this.#createCeil();
                     cell.innerText = data;
                     row.append(cell);
                 }
@@ -49,5 +43,3 @@ window.onload = function () {
     table.genTableBodyByArray(array);
     table.appendTo(document.body);
 };
-
-
