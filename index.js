@@ -1,47 +1,28 @@
-window.onload = function () {
-    const wrappers = [...document.querySelectorAll(".wrapper")];
+import {
+    blockHandler,
+    clearCounterHandler,
+    setCounterHandler,
+} from "./handlers.js";
 
-    const count = (input) => (input.value = ++input.value);
+import {
+    getValueFromLSAndAddToCounter,
+    setCountersToSelector,
+} from "./utils.js";
 
-    const getCounterFormCntx = (cntx) => {
-        return cntx.querySelector(`input[name=${cntx.id}]`);
-    };
+function main() {
+    const blocks = [...document.querySelectorAll(".block")],
+        clearCounter = document.getElementById("clearCounter"),
+        setCounters = document.getElementById("setCounters");
 
-    const saveCounterToLS = (key, counter) => {
-        return localStorage.setItem(key, counter);
-    };
+    setCountersToSelector(blocks, setCounters);
 
-    const getCounterFromLS = (key) => localStorage.getItem(key);
+    clearCounter.addEventListener("click", clearCounterHandler(blocks));
 
-    const removeCounterFromLS = (key) => localStorage.removeItem(key);
+    setCounters.addEventListener("submit", setCounterHandler);
 
-    const actions = {
-        clearCounter(counterLSKey, counter) {
-            counter.value = null;
-            removeCounterFromLS(counterLSKey);
-        },
-        setCounter(counterLSKey, counter) {
-            const numberCounter = getCounterFromLS(counterLSKey);
-            counter.value = numberCounter;
-        },
-        upCounter(counterLSKey, counter) {
-            const numberCounter = count(counter);
-            saveCounterToLS(counterLSKey, numberCounter);
-        },
-    };
-
-    const wrapperHandler = function (event) {
-        event.preventDefault();
-        const action = event.target.dataset.action,
-            actionMethod = actions[action];
-        if (action && typeof actionMethod == "function") {
-            const counter = getCounterFormCntx(this),
-                counterLSKey = this.id;
-            actionMethod(counterLSKey, counter);
-        }
-    };
-
-    wrappers.forEach((wrapper) => {
-        wrapper.addEventListener("click", wrapperHandler);
+    blocks.forEach((block) => {
+        getValueFromLSAndAddToCounter(block);
+        block.addEventListener("click", blockHandler);
     });
 };
+window.onload = main
