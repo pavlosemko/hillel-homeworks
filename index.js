@@ -79,6 +79,13 @@ app.get("/products_by_name/:name/", (req, res) => {
     const filteredProducts = getFilteredProducts(data, params);
     res.json(filteredProducts);
 });
+// чи через query
+// app.get("/products_by_name/", (req, res) => {
+//     const { query } = req;
+//     const data = getData();
+//     const filteredProducts = getFilteredProducts(data, query);
+//     res.json(filteredProducts);
+// });
 
 app.listen(port, () => {
     console.log(`Server running on http://localhost:${port}`);
