@@ -57,7 +57,7 @@ promise3
         return Promise.reject();
     })
     .then(null, () => {
-        console.log(5);
+        console.log(6);
         return Promise.reject();
     })
     .then(null, () => {
