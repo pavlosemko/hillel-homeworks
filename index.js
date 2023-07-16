@@ -1,87 +1,50 @@
 const promise = new Promise((resolve, reject) => {
     console.log(0);
-    resolve(1);
+    const flag = true;
+    if (!flag){
+        reject();
+    }
+   resolve()
 });
 
 promise
-    .then((val) => {
-        console.log(val);
-        return Promise.resolve(3);
-    })
-    .then((val) => {
-        console.log(val);
-        return Promise.reject(6);
-    })
-    .then(null, (val) => {
-        console.log(val);
-        return Promise.reject(8);
-    })
-    .then(null, (val) => {
-        console.log(val);
-    });
+    .then(
+        (flag) => {
+            console.log(1);
+            return Promise.resolve(flag)
 
-const promise2 = new Promise((resolve, reject) => {
-    console.log(0);
-    reject(2);
-});
-
-promise2
-    .then(null, (val) => {
-        console.log(val);
-        return Promise.resolve(3);
-    })
-    .then((val) => {
-        console.log(val);
-        return Promise.reject(6);
-    })
-    .then(null, (val) => {
-        console.log(val);
-        return Promise.resolve(7);
-    })
-    .then((val) => {
-        console.log(val);
-    });
-
-const promise3 = new Promise((resolve, reject) => {
-    console.log(0);
-    resolve();
-});
-
-promise3
-    .then(() => {
-        console.log(1);
-        return Promise.resolve();
-    })
-    .then(() => {
-        console.log(3);
-        return Promise.reject();
-    })
-    .then(null, () => {
-        console.log(6);
-        return Promise.reject();
-    })
-    .then(null, () => {
-        console.log(8);
-    });
-
-const promise4 = new Promise((resolve, reject) => {
-    console.log(0);
-    reject();
-});
-
-promise4
-    .then(null, () => {
-        console.log(2);
-        return Promise.resolve();
-    })
-    .then(() => {
-        console.log(3);
-        return Promise.reject();
-    })
-    .then(null, () => {
-        console.log(6);
-        return Promise.resolve();
-    })
-    .then(() => {
-        console.log(7);
-    });
+        },
+        (flag) => {
+            console.log(2);
+            return Promise.resolve(flag)
+        }
+    )
+    .then(
+        (flag) => {
+            console.log(3);
+            return Promise.reject(flag)
+        },
+        () => {
+            console.log(4);
+        }
+    )
+    .then(
+        () => {
+            console.log(5);
+        },
+        (flag) => {
+            console.log(6);
+            if (flag) {
+                return Promise.reject(flag)
+            }
+            return Promise.resolve(flag)
+        }
+    )
+    .then(
+        () => {
+            console.log(7);
+        },
+        () => {
+            console.log(8);
+        }
+    );
