@@ -34,6 +34,7 @@ window.onload = function () {
     };
 
     function setWeatherData(city) {
+        hideWeatherBlock()
         getWeatherDataByCity(city)
             .then(
                 (data) => {
@@ -103,7 +104,6 @@ window.onload = function () {
 
     const onChangeCityHandler = function (event) {
         event.preventDefault();
-        hideWeatherBlock();
         setWeatherData(this.value);
     };
     chooserCity.addEventListener("change", onChangeCityHandler);

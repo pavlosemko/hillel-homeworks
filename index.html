@@ -14,24 +14,21 @@
         <style>
             .hidden {
                 display: none !important;
-
             }
-            .fade{
+            .fade {
                 opacity: 0;
-
             }
-            #weatherBlock{
+            #weatherBlock {
                 transition: opacity 1s;
             }
-          </style>
+        </style>
     </head>
     <body>
         <div class="container mt-5">
             <div class="row justify-content-center">
                 <div class="col-4">
                     <div class="card">
-                     
-                        <div class="card-body" style="min-height: 600px;">
+                        <div class="card-body" style="min-height: 600px">
                             <label for="chooserCity">Оберіть місто</label>
                             <select id="chooserCity" class="form-control mb-3">
                                 <option selected value="KYIV">Київ</option>
@@ -39,12 +36,10 @@
                                 <option value="LVIV">Львів</option>
                                 <option value="DNIPRO">Дніпро</option>
                             </select>
-                          
+
                             <div id="weatherBlock" class="hidden">
                                 <div class="d-flex mb-2 justify-content-center">
-                                    <div
-                                        class="rounded-circle bg-info d-inline"
-                                    >
+                                    <div class="rounded-circle bg-info d-inline">
                                         <img
                                             src="spinner.gif"
                                             class="rounded-circle updateData"
@@ -56,9 +51,7 @@
                                 </div>
 
                                 <h1 class="card-title text-center">
-                                    <span id="temperature" class="updateData"
-                                        >...</span
-                                    >&#8451;
+                                    <span id="temperature" class="updateData">...</span>&#8451;
                                 </h1>
                                 <p
                                     id="weatherDescription"
@@ -67,9 +60,7 @@
                                     ...
                                 </p>
                                 <ul class="list-group">
-                                    <li
-                                        class="list-group-item d-flex align-items-center"
-                                    >
+                                    <li class="list-group-item d-flex align-items-center">
                                         <svg
                                             xmlns="http://www.w3.org/2000/svg"
                                             width="20"
@@ -83,16 +74,10 @@
                                             />
                                         </svg>
                                         <p class="m-0">
-                                            <span
-                                                id="humidity"
-                                                class="updateData"
-                                                >...</span
-                                            >%
+                                            <span id="humidity" class="updateData">...</span>%
                                         </p>
                                     </li>
-                                    <li
-                                        class="list-group-item d-flex align-items-center"
-                                    >
+                                    <li class="list-group-item d-flex align-items-center">
                                         <svg
                                             xmlns="http://www.w3.org/2000/svg"
                                             width="20"
@@ -106,21 +91,11 @@
                                             />
                                         </svg>
                                         <p class="m-0">
-                                            <span
-                                                id="windSpeed"
-                                                class="updateData"
-                                                >...</span
-                                            >м/с
-                                            <span
-                                                id="windDegree"
-                                                class="updateData"
-                                                >...</span
-                                            >
+                                            <span id="windSpeed" class="updateData">...</span>м/с
+                                            <span id="windDegree" class="updateData">...</span>
                                         </p>
                                     </li>
-                                    <li
-                                        class="list-group-item d-flex align-items-center"
-                                    >
+                                    <li class="list-group-item d-flex align-items-center">
                                         <svg
                                             xmlns="http://www.w3.org/2000/svg"
                                             width="20"
@@ -138,13 +113,8 @@
                                             />
                                         </svg>
                                         <p class="m-0">
-                                            <span
-                                                id="pressure"
-                                                class="updateData"
-                                                >...</span
-                                            >гПа
+                                            <span id="pressure" class="updateData">...</span> гПа
                                         </p>
-                                        <div class="updateData" id="test"></div>
                                     </li>
                                 </ul>
                             </div>
