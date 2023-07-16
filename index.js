@@ -51,9 +51,7 @@ window.onload = function () {
                     alert("Шось пішло не так спробуйте пізніще ");
                 }
             )
-            .then(() => {
-                showWeatherBlock();
-            });
+            showWeatherBlock();
     }
 
     function getWindDirection(windDegree) {
