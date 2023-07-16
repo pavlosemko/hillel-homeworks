@@ -14,15 +14,24 @@
         <style>
             .hidden {
                 display: none !important;
+
             }
-        </style>
+            .fade{
+                opacity: 0;
+
+            }
+            #weatherBlock{
+                transition: opacity 1s;
+            }
+          </style>
     </head>
     <body>
         <div class="container mt-5">
             <div class="row justify-content-center">
                 <div class="col-4">
                     <div class="card">
-                        <div class="card-body">
+                     
+                        <div class="card-body" style="min-height: 600px;">
                             <label for="chooserCity">Оберіть місто</label>
                             <select id="chooserCity" class="form-control mb-3">
                                 <option selected value="KYIV">Київ</option>
@@ -30,14 +39,14 @@
                                 <option value="LVIV">Львів</option>
                                 <option value="DNIPRO">Дніпро</option>
                             </select>
-
+                          
                             <div id="weatherBlock" class="hidden">
                                 <div class="d-flex mb-2 justify-content-center">
                                     <div
                                         class="rounded-circle bg-info d-inline"
                                     >
                                         <img
-                                            src="https://openweathermap.org/img/wn/04d@4x.png"
+                                            src="spinner.gif"
                                             class="rounded-circle updateData"
                                             id="weatherIcon"
                                             alt=""
@@ -47,7 +56,9 @@
                                 </div>
 
                                 <h1 class="card-title text-center">
-                                    <span id="temperature" class="updateData">...</span>&#8451;
+                                    <span id="temperature" class="updateData"
+                                        >...</span
+                                    >&#8451;
                                 </h1>
                                 <p
                                     id="weatherDescription"
@@ -72,7 +83,11 @@
                                             />
                                         </svg>
                                         <p class="m-0">
-                                            <span id="humidity" class="updateData">...</span>%
+                                            <span
+                                                id="humidity"
+                                                class="updateData"
+                                                >...</span
+                                            >%
                                         </p>
                                     </li>
                                     <li
@@ -91,8 +106,16 @@
                                             />
                                         </svg>
                                         <p class="m-0">
-                                            <span id="windSpeed" class="updateData">...</span>м/с
-                                            <span id="windDegree" class="updateData">...</span>
+                                            <span
+                                                id="windSpeed"
+                                                class="updateData"
+                                                >...</span
+                                            >м/с
+                                            <span
+                                                id="windDegree"
+                                                class="updateData"
+                                                >...</span
+                                            >
                                         </p>
                                     </li>
                                     <li
@@ -115,8 +138,13 @@
                                             />
                                         </svg>
                                         <p class="m-0">
-                                            <span id="pressure" class="updateData">...</span>гПа
+                                            <span
+                                                id="pressure"
+                                                class="updateData"
+                                                >...</span
+                                            >гПа
                                         </p>
+                                        <div class="updateData" id="test"></div>
                                     </li>
                                 </ul>
                             </div>

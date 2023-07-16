@@ -4,6 +4,13 @@ window.onload = function () {
         weatherBlock = document.getElementById("weatherBlock"),
         updatedElements = [...document.querySelectorAll(".updateData")];
 
+    function showWeatherBlock() {
+        weatherBlock.classList.remove("hidden");
+    }
+    function hideWeatherBlock() {
+        weatherBlock.classList.add("hidden");
+    }
+
     const textUpdater = (element, data) => {
         element.textContent = data;
     };
@@ -11,6 +18,7 @@ window.onload = function () {
     const genWeatherIconLink = (icon) => {
         return `https://openweathermap.org/img/wn/${icon}@4x.png`;
     };
+
     const updaters = {
         temperature_updater: textUpdater,
         pressure_updater: textUpdater,
@@ -18,8 +26,7 @@ window.onload = function () {
         windSpeed_updater: textUpdater,
         weatherDescription_updater: textUpdater,
         weatherIcon_updater: (element, data) => {
-            const icon = genWeatherIconLink(data);
-            element.src = icon;
+            element.src = genWeatherIconLink(data);
         },
         windDegree_updater: (element, data) => {
             element.textContent = getWindDirection(data);
@@ -27,19 +34,25 @@ window.onload = function () {
     };
 
     function setWeatherData(city) {
-        getWeatherDataByCity(city).then((data) => {
-            console.log(data);
-            updatedElements.forEach(function (element) {
-                const id = element.id,
-                    updater = updaters[`${id}_updater`],
-                    newData = data[id];
-                if (newData && updater && typeof updater === "function") {
-                    console.log(id);
-                    updater(element, newData);
+        getWeatherDataByCity(city)
+            .then(
+                (data) => {
+                    updatedElements.forEach((element) => {
+                        const id = element.id,
+                            updater = updaters[`${id}_updater`],
+                            newData = data[id];
+                        if (newData && updater && typeof updater === "function") {
+                            updater(element, newData);
+                        }
+                    });
+                },
+                () => {
+                    alert("Шось пішло не так спробуйте пізніще ");
                 }
+            )
+            .then(() => {
+                showWeatherBlock();
             });
-            toggleWeatherBlock();
-        });
     }
 
     function getWindDirection(windDegree) {
@@ -57,27 +70,20 @@ window.onload = function () {
         const index = Math.round(windDegree / 45) % 8;
         return directions[index];
     }
-    const toggleWeatherBlock = () => {
-        weatherBlock.classList.toggle("hidden");
-    };
 
     async function getWeatherDataByCity(city) {
-        const API_KEY = "428ed9c20a980dc9c96118fc1ca2f88b";
-        const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&APPID=${API_KEY}&lang=uk`;
+        const API_KEY = "428ed9c20a980dc9c96118fc1ca2f88b",
+            apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&APPID=${API_KEY}&lang=uk`;
         try {
             const response = await fetch(apiUrl);
             if (!response.ok) {
-                throw new Error(
-                    "Request failed with status " + response.status
-                );
+                throw new Error("Request failed with status " + response.status);
             }
             const data = await response.json();
             const {
                 main: { temp: temperature, pressure, humidity },
                 wind: { speed: windSpeed, deg: windDegree },
-                weather: [
-                    { description: weatherDescription, icon: weatherIcon },
-                ],
+                weather: [{ description: weatherDescription, icon: weatherIcon }],
             } = data;
 
             return {
@@ -90,14 +96,15 @@ window.onload = function () {
                 weatherIcon,
             };
         } catch (error) {
-            console.error("Error:", error.message);
+            console.error(error);
+            return Promise.reject(error);
         }
     }
 
     const onChangeCityHandler = function (event) {
         event.preventDefault();
-        toggleWeatherBlock();
-        setWeatherData(this.value)
+        hideWeatherBlock();
+        setWeatherData(this.value);
     };
     chooserCity.addEventListener("change", onChangeCityHandler);
     setWeatherData(defaultCity);
