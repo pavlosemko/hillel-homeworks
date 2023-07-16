@@ -2,9 +2,9 @@ const promise = new Promise((resolve, reject) => {
     console.log(0);
     const flag = true;
     if (!flag){
-        reject();
+        reject(flag);
     }
-   resolve()
+   resolve(flag)
 });
 
 promise
