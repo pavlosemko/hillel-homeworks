@@ -43,8 +43,6 @@ window.onload = function () {
     // table.genTableBodyByArray(array);
     // table.appendTo(document.body);
 
-
-
     const createElByTagName = (tag) => document.createElement(tag);
     const createCell = () => createElByTagName("td");
     const createRow = () => createElByTagName("tr");
@@ -60,12 +58,7 @@ window.onload = function () {
         }
         return array;
     };
-    const arr = createSequentialArray(10, 10);
-
-    const fillTableByArray = (array) => {
-
-        const table = createTable();
-
+    const fillTableByArray = (table, array) => {
         for (const iterator of array) {
             const row = createRow();
             for (const data of iterator) {
@@ -75,9 +68,11 @@ window.onload = function () {
             }
             table.append(row);
         }
-        return table
+        return table;
     };
-
+    const arr = createSequentialArray(10, 10);
+    const table = createTable(table, arr);
+    fillTableByArray(table, arr);
+    document.body.append(table);
     
-    document.body.append(fillTableByArray(arr))
 };
