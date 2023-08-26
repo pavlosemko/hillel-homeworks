@@ -59,6 +59,7 @@ window.onload = function () {
         return array;
     };
     const fillTableByArray = (table, array) => {
+        
         for (const iterator of array) {
             const row = createRow();
             for (const data of iterator) {
@@ -71,8 +72,8 @@ window.onload = function () {
         return table;
     };
     const arr = createSequentialArray(10, 10);
-    const table = createTable(table, arr);
+    const table = createTable();
     fillTableByArray(table, arr);
     document.body.append(table);
-    
+
 };
